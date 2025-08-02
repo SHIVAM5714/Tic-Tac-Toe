@@ -1,0 +1,144 @@
+ /* Custom styles for the game */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradientBG 4s ease infinite;
+    overflow: hidden;
+}
+
+/* Keyframe animation for the background gradient */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Keyframe animation for the color-changing text */
+.color-change-text {
+    background: linear-gradient(90deg, #f43f5e, #ec4899, #d946ef, #a855f7, #f43f5e);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    background-size: 250% 250%;
+    animation: text-flow 5s linear infinite;
+}
+
+@keyframes text-flow {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 250% 50%; }
+}
+
+/* Main container styling */
+.main-container {
+    background-color: rgba(15, 23, 42, 0.5);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Styling for the game cells */
+.cell {
+    width: 100px;
+    height: 100px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 0.75rem;
+    position: relative;
+}
+
+.cell:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: scale(1.05);
+}
+
+/* Specific styles for X and O */
+.cell.x { color: #f472b6; } /* Vibrant Pink */
+.cell.o { color: #60a5fa; } /* Cool Blue */
+
+/* Winning cell glow animation */
+.cell.win {
+    animation: win-glow 1s ease-in-out infinite alternate;
+}
+@keyframes win-glow {
+    from { box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px var(--glow-color); }
+    to { box-shadow: 0 0 20px #fff, 0 0 30px var(--glow-color), 0 0 40px var(--glow-color); }
+}
+
+/* Winning Line Style */
+.winning-line {
+    position: absolute;
+    height: 5px;
+    background-color: #fde047; /* Bright yellow */
+    border-radius: 5px;
+    transform-origin: left center;
+    display: none;
+    box-shadow: 0 0 10px #fde047, 0 0 15px #fde047;
+    transition: transform 0.5s ease-out, width 0.5s ease-out;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+    .cell {
+        width: 80px;
+        height: 80px;
+        font-size: 2.5rem;
+    }
+    #game-board {
+        width: 252px !important;
+        height: 252px !important;
+    }
+    #score-container {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    .score-box {
+        width: 100% !important;
+    }
+}
+
+/* Modal styling */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 1rem;
+    max-width: 90%;
+    max-height: 90%;
+    overflow-y: auto;
+    position: relative;
+}
+
+.spinner {
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top: 4px solid #fff;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
